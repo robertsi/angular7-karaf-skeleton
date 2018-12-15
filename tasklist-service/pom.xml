@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>angularkaraf</artifactId>
+        <groupId>com.example.skeleton.angularkaraf</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>tasklist-service</artifactId>
+    <packaging>bundle</packaging>
+    <properties>
+        <osgi.version>6.0.0</osgi.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.example.skeleton.angularkaraf</groupId>
+            <artifactId>model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>  <!-- named anottation, for blueprint generation -->
+            <version>1</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.blueprint</groupId>
+            <artifactId>blueprint-maven-plugin-annotation</artifactId> <!-- Service and bean anottation, for blueprint generation -->
+            <version>1.3.0</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>javax.transaction-api</artifactId>
+            <version>1.2</version> <!-- does not work with 1.3:/ -->
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.3.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.2.9.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.3.176</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>${osgi.version}</version>
+        </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>org.ops4j.pax.cdi</groupId>-->
+            <!--<artifactId>pax-cdi-api</artifactId>-->
+            <!--<version>0.5.0</version>-->
+            <!--<optional>true</optional>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>javax.inject</groupId>-->
+            <!--<artifactId>javax.inject</artifactId>-->
+            <!--<version>1</version>-->
+            <!--<optional>true</optional>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>javax.transaction</groupId>-->
+            <!--<artifactId>javax.transaction-api</artifactId>-->
+            <!--<version>1.2</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate.javax.persistence</groupId>-->
+            <!--<artifactId>hibernate-jpa-2.1-api</artifactId>-->
+            <!--<version>1.0.0.Final</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.logging.log4j</groupId>-->
+            <!--<artifactId>log4j-core</artifactId>-->
+            <!--<version>2.11.1</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.eclipse.jetty</groupId>-->
+            <!--<artifactId>jetty-jndi</artifactId>-->
+            <!--<version>9.4.14.v20181114</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.aries.blueprint</groupId>
+                <artifactId>blueprint-maven-plugin</artifactId>
+                <version>1.10.0</version>
+                <configuration>
+                    <scanPaths>
+                        <scanPath>com.example.skeleton.angularkaraf</scanPath>
+                    </scanPaths>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>add-resource-dir</goal>
+                            <goal>blueprint-generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+
+
+</project>

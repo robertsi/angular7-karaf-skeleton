@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example.skeleton.angularkaraf</groupId>
+    <artifactId>angularkaraf</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <cxf.version>3.2.6</cxf.version> <!-- 3.2.7 conflicts with blueprint generator plugin -->
+        <pax.jdbc.version>1.3.1</pax.jdbc.version>
+    </properties>
+
+    <modules>
+        <module>model</module>
+        <module>tasklist-service</module>
+        <module>tasklist-rest-service</module>
+        <module>angular-frontend</module>
+        <module>features</module>
+    </modules>
+
+    <build>
+        <defaultGoal>clean install</defaultGoal>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                    <configuration>
+                        <showDeprecation>true</showDeprecation>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>4.1.0</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <instructions>
+                            <!-- Fix for feature:install failing, see
+                            https://stackoverflow.com/questions/42476572/karaf-feature-install-missing-requirement-osgi-service-but-it-is-there
+                            -->
+                            <_removeheaders>Import-Service,Export-Service</_removeheaders>
+                        </instructions>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

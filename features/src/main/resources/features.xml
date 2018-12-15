@@ -1,0 +1,48 @@
+<features name="angularkaraf-${pom.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
+    <repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf.version}/xml/features</repository>
+    <repository>mvn:org.ops4j.pax.jdbc/pax-jdbc-features/${pax.jdbc.version}/xml/features</repository>
+
+    <!-- usage in Karaf console
+  feature:repo-add mvn:${groupId}/${artifactId}/${version}/xml/features
+  feature:install angularkaraf -->
+    <feature name="angularkaraf" version="${pom.version}">
+        <feature>data-service</feature>
+        <feature>rest-service</feature>
+        <feature>frontend</feature>
+    </feature>
+
+    <feature name="data-source">
+        <feature>pax-jdbc-h2</feature>
+        <feature>pax-jdbc-config</feature>
+        <feature>pax-jdbc-pool-dbcp2</feature>
+        <feature>jndi</feature>
+        <feature>transaction</feature>
+        <configfile finalname="/etc/org.ops4j.datasource-tasklist.cfg">mvn:${groupId}/features/${pom.version}/cfg/org.ops4j.datasource-tasklist</configfile>
+        <capability>
+            osgi.service;objectClass=javax.sql.DataSource;osgi.jndi.service.name=tasklist
+        </capability>
+    </feature>
+
+    <feature name="data-service" version="${pom.version}">
+        <feature>data-source</feature>
+        <feature>aries-blueprint</feature>
+        <feature version="[2.7, 3)">jpa</feature> <!-- Aries JPA, provides javax.persistence pkg  -->
+        <feature version="[5.2, 6)">hibernate</feature> <!--5.2.9.Final-->
+        <bundle>mvn:${groupId}/model/${pom.version}</bundle>
+        <bundle>mvn:${groupId}/tasklist-service/${pom.version}</bundle>
+    </feature>
+
+    <feature name="rest-service" version="${pom.version}">
+        <feature>cxf-features-logging</feature>
+        <feature>cxf-jaxrs</feature>
+        <feature>cxf-commands</feature>
+        <feature>cxf-rs-security-cors</feature>
+        <bundle>mvn:${groupId}/tasklist-rest-service/${pom.version}</bundle>
+    </feature>
+
+    <feature name="frontend" version="${pom.version}">
+        <feature>war</feature>
+        <bundle>mvn:${groupId}/angular-frontend/${pom.version}</bundle>
+    </feature>
+
+</features>

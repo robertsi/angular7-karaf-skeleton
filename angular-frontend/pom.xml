@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>angularkaraf</artifactId>
+        <groupId>com.example.skeleton.angularkaraf</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>angular-frontend</artifactId>
+    <packaging>bundle</packaging>
+
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <configuration>
+            <filesets>
+              <fileset>
+                <directory>dist</directory>
+                <!--<includes>-->
+                  <!--<include>**</include>-->
+                <!--</includes>-->
+              </fileset>
+            </filesets>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <extensions>true</extensions>
+          <configuration>
+            <instructions>
+              <Web-ContextPath>/angular-frontend</Web-ContextPath>
+              <!--<Private-Package>*</Private-Package>-->
+              <Include-Resource>dist/angular-frontend</Include-Resource>
+            </instructions>
+            <!--<instructions>-->
+              <!--<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>-->
+              <!--<Bundle-Description>${project.description}</Bundle-Description>-->
+              <!--<Import-Package>*</Import-Package>-->
+              <!--&lt;!&ndash;<Private-Package>com.bintegra.schema.*, net.eimv._2017.*, com.bintegra.esb.iDMS_NT_EventPayload.*</Private-Package>&ndash;&gt;-->
+              <!--&lt;!&ndash;<Export-Package>com.bintegra.esb.iDMS_NT_EventPayload.api.*</Export-Package>&ndash;&gt;-->
+              <!--&lt;!&ndash;<Bundle-Blueprint>OSGI-INF/blueprint/rest-blueprint.xml</Bundle-Blueprint>&ndash;&gt;-->
+            <!--</instructions>-->
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.github.eirslett</groupId>
+          <artifactId>frontend-maven-plugin</artifactId>
+          <version>1.6</version>
+          <executions>
+            <execution>
+              <!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
+              <id>install node and npm</id>
+              <goals>
+                <goal>install-node-and-npm</goal>
+              </goals>
+              <!-- optional: default phase is "generate-resources" -->
+              <phase>generate-resources</phase>
+            </execution>
+            <execution>
+              <id>npm install</id>
+              <goals>
+                <goal>npm</goal>
+              </goals>
+              <!-- optional: default phase is "generate-resources" -->
+              <phase>generate-resources</phase>
+              <configuration>
+                <!-- optional: The default argument is actually
+                "install", so unless you need to run some other npm command,
+                you can remove this whole <configuration> section.
+                -->
+                <arguments>install</arguments>
+              </configuration>
+            </execution>
+            <execution>
+              <id>npm build</id>
+              <goals>
+                <goal>npm</goal>
+              </goals>
+              <phase>generate-resources</phase>
+              <configuration>
+                <arguments>run build</arguments>
+              </configuration>
+            </execution>
+          </executions>
+          <configuration>
+            <nodeVersion>v10.14.2</nodeVersion>
+            <!-- optional: with node version greater than 4.0.0 will use npm provided by node distribution -->
+            <npmVersion>6.4.1</npmVersion>
+            <!--&lt;!&ndash; optional: where to download node and npm from. Defaults to https://nodejs.org/dist/ &ndash;&gt;-->
+            <!--<downloadRoot>http://myproxy.example.org/nodejs/</downloadRoot>-->
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+</project>
