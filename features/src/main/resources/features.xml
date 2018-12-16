@@ -17,6 +17,7 @@
         <feature>pax-jdbc-pool-dbcp2</feature>
         <feature>jndi</feature>
         <feature>transaction</feature>
+        <feature>jdbc</feature>
         <configfile finalname="/etc/org.ops4j.datasource-tasklist.cfg">mvn:${groupId}/features/${pom.version}/cfg/org.ops4j.datasource-tasklist</configfile>
         <capability>
             osgi.service;objectClass=javax.sql.DataSource;osgi.jndi.service.name=tasklist
@@ -25,7 +26,7 @@
 
     <feature name="data-service" version="${pom.version}">
         <feature>data-source</feature>
-        <feature>aries-blueprint</feature>
+        <feature dependency="true">aries-blueprint</feature>
         <feature version="[2.7, 3)">jpa</feature> <!-- Aries JPA, provides javax.persistence pkg  -->
         <feature version="[5.2, 6)">hibernate</feature> <!--5.2.9.Final-->
         <bundle>mvn:${groupId}/model/${pom.version}</bundle>
