@@ -38,6 +38,9 @@
         <feature>cxf-jaxrs</feature>
         <feature>cxf-commands</feature>
         <feature>cxf-rs-security-cors</feature>
+        <feature>cxf-rs-description-openapi-v3</feature>
+        <!--<feature>cxf-jackson</feature>-->
+        <!--<bundle start-level="35">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${cxf.jackson.version}</bundle>-->
         <bundle>mvn:${groupId}/tasklist-rest-service/${pom.version}</bundle>
     </feature>
 
@@ -45,5 +48,22 @@
         <feature>war</feature>
         <bundle>mvn:${groupId}/angular-frontend/${pom.version}</bundle>
     </feature>
+
+    <!--<feature name="cxf-jackson" version="${project.version}">-->
+        <!--&lt;!&ndash; Required by jackson-dataformat-yaml &ndash;&gt;-->
+        <!--<bundle start-level="10" dependency="true">mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jaxrs-api-2.1/${cxf.servicemix.jaxrs.specs.version}</bundle>-->
+        <!--<bundle start-level="10" dependency="true">mvn:javax.annotation/javax.annotation-api/${cxf.javax.annotation-api.version}</bundle>-->
+        <!--<bundle start-level="35">mvn:org.yaml/snakeyaml/${cxf.snakeyaml.version}</bundle>-->
+        <!--<bundle start-level="35">mvn:com.fasterxml.jackson.core/jackson-core/${cxf.jackson.version}</bundle>-->
+        <!--<bundle start-level="35">mvn:com.fasterxml.jackson.core/jackson-annotations/${cxf.jackson.version}</bundle>-->
+        <!--<bundle start-level="35">mvn:com.fasterxml.jackson.core/jackson-databind/${cxf.jackson.version}</bundle>-->
+        <!--<bundle start-level="35">mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/${cxf.jackson.version}</bundle>-->
+        <!--<bundle start-level="35">mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${cxf.jackson.version}</bundle>-->
+        <!--&lt;!&ndash; <bundle start-level="35">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${cxf.jackson.version}</bundle> &ndash;&gt;-->
+        <!--&lt;!&ndash; <bundle start-level="35">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${cxf.jackson.version}</bundle> &ndash;&gt;-->
+        <!--<feature prerequisite="true">wrap</feature>-->
+        <!--<bundle>wrap:mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${cxf.jackson.version}$overwrite=merge&amp;Import-Package=javax.ws.rs*;version="[2.0,3)",com.fasterxml.jackson*;version="[2.8,3)"</bundle>-->
+        <!--<bundle>wrap:mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${cxf.jackson.version}$overwrite=merge&amp;Import-Package=javax.ws.rs*;version="[2.0,3)",com.fasterxml.jackson.module.jaxb;resolution:=optional;version="[2.8,3)",com.fasterxml.jackson*;version="[2.8,3)"</bundle>-->
+    <!--</feature>-->
 
 </features>

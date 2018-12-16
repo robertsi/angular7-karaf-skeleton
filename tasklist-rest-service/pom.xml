@@ -38,6 +38,11 @@
             <artifactId>cxf-rt-rs-security-cors</artifactId>
             <version>${cxf.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-service-description-openapi-v3</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.inject</groupId>
@@ -51,7 +56,11 @@
             <version>1.3.0</version>
             <optional>true</optional>
         </dependency>
-
+        <!--<dependency>-->
+            <!--<groupId>org.webjars</groupId>-->
+            <!--<artifactId>swagger-ui</artifactId>-->
+            <!--<version>3.20.2</version>-->
+        <!--</dependency>-->
 
         <!--<dependency>-->
             <!--<groupId>javax.enterprise</groupId>-->

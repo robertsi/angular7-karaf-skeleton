@@ -115,6 +115,17 @@
             <!--<version>9.4.14.v20181114</version>-->
             <!--<scope>test</scope>-->
         <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.0.12.RELEASE</version>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.hibernate</groupId>-->
+                    <!--<artifactId>hibernate-core</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
     </dependencies>
 
     <build>
@@ -125,6 +136,7 @@
                 <configuration>
                     <instructions>
                         <Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
+                        <!--<Embed-Dependency>spring-data-jpa</Embed-Dependency>-->
                     </instructions>
                 </configuration>
             </plugin>

@@ -19,21 +19,21 @@ export class TaskService {
 
   getTask(id: number): Observable<Task> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get(url).pipe(
-      map(resp => resp['task'] as Task)
+    return this.http.get<Task>(url).pipe(
+     // map(resp => resp['task'] as Task)
     );
   }
 
   getTasks(): Observable<Array<Task>> {
-    //return this.http.get<Array<Task>>('http://localhost:8181/cxf/tasks');
-    return this.http.get(this.apiUrl).pipe(
-      map(resp => resp['task'] as Task[])
-    );
+    return this.http.get<Array<Task>>(this.apiUrl);
+    // return this.http.get(this.apiUrl).pipe(
+    //   map(resp => resp['task'] as Task[])
+    // );
   }
 
   addTask(newTask: Task): Observable<Task> {
-    // return this.http.post<Task>(this.apiUrl, task, httpOptions).pipe(
-      return this.http.post(this.apiUrl, {task: newTask}, httpOptions).pipe(
+     return this.http.post<Task>(this.apiUrl, newTask, httpOptions).pipe(
+      //return this.http.post(this.apiUrl, {task: newTask}, httpOptions).pipe(
       // hack webbrowser does not follow Location header and 201 Created status code. Possible solution is to add Refresh
       // header on server side?? https://www.blackpepper.co.uk/what-we-think/blog/201-created-or-post-redirect-get
       map(resp => newTask as Task ),
@@ -56,7 +56,7 @@ export class TaskService {
 
   updateTask(task: Task): Observable<any> {
     const url = `${this.apiUrl}/${task.id}`;
-    return this.http.put(url, {task: task}, httpOptions).pipe(
+    return this.http.put<any>(url, task, httpOptions).pipe(
       tap(_ => this.log(`updated task id=${task.id}`))
       // catchError(this.handleError<any>('updateHero'))
     );

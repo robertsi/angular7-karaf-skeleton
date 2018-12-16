@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
 import java.util.Collection;
 
+
 @Bean
 //@Service(autoExport = AutoExport.INTERFACES, properties = @ServiceProperty(name="service.exported.interfaces", values="*"))
 @Service
