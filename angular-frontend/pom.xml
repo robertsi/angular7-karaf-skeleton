@@ -12,6 +12,24 @@
     <artifactId>angular-frontend</artifactId>
     <packaging>bundle</packaging>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi.cmpn</artifactId>
+      <version>6.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+  </dependencies>
+
     <build>
       <plugins>
         <plugin>
@@ -34,9 +52,9 @@
           <extensions>true</extensions>
           <configuration>
             <instructions>
-              <Web-ContextPath>/angular-frontend</Web-ContextPath>
+<!--              <Web-ContextPath>/angular-frontend</Web-ContextPath>-->
               <!--<Private-Package>*</Private-Package>-->
-              <Include-Resource>dist/angular-frontend</Include-Resource>
+              <Include-Resource>META-INF = dist/angular-frontend</Include-Resource>
             </instructions>
             <!--<instructions>-->
               <!--<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>-->
